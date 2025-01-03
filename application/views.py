@@ -626,7 +626,7 @@ class webscraping(APIView):
 
                 if website:
                     website=set(website)
-                    print('website is exist  410 ')
+                    print('website is exist  410 ',website)
                     return website      
         
 
@@ -714,11 +714,11 @@ class webscraping(APIView):
 
 
             data = {
-            "company_name":str(upcompanyfuntext()).replace('{','').replace('}','').replace('[','').replace(']',''),
-            "address":str(addresstext()).replace('{','').replace('}','').replace('[','').replace(']',''),
-            "contact_number":str(contacttext()).replace('{','').replace('}','').replace('[','').replace(']',''),
-            "email": str(mailtext()).replace('{','').replace('}','').replace('[','').replace(']',''),
-            "website": str(websitefuntext()).replace('{','').replace('}','').replace('[','').replace(']',''),
+            "company_name":str(upcompanyfuntext()).replace('{','').replace('}','').replace('[','').replace(']','').replace("'", ""),
+            "address":str(addresstext()).replace('{','').replace('}','').replace('[','').replace(']','').replace("'", ""),
+            "contact_number":str(contacttext()).replace('{','').replace('}','').replace('[','').replace(']','').replace("'", ""),
+            "email": str(mailtext()).replace('{','').replace('}','').replace('[','').replace(']','').replace("'", ""),
+            "website": str(websitefuntext()).replace('{','').replace('}','').replace('[','').replace(']','').replace("'", ""),
             }
 
             serializer=serializersclass(data=data)
