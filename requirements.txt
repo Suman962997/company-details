@@ -1,6 +1,0 @@
-djangorestframework==3.14.0  # For APIView, Response, parsers
-requests==2.31.0            # For making HTTP requests
-beautifulsoup4==4.13.0b2     # For web scraping with BeautifulSoup
-lxml==4.9.3                 # Recommended for BeautifulSoup parser
-PyPDF2==3.0.1               # For reading PDF files
-Django==4.2.1               # For Django ORM and models
