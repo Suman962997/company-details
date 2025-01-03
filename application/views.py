@@ -9,7 +9,6 @@ from rest_framework.parsers import MultiPartParser, FormParser
 import os
 from PyPDF2 import PdfReader
 
-
 class webscraping(APIView):
     parser_classes=(MultiPartParser,FormParser)
 
@@ -585,7 +584,7 @@ class webscraping(APIView):
                     return set(contact_number)
 
                 if not contact_number:
-                    contact_number=''
+                    contact_number=None
                     return contact_number
                 print(f'It is contact : {contact_number}')
 
@@ -602,7 +601,7 @@ class webscraping(APIView):
                 email_id=re.findall(email_pattern,filetext,re.IGNORECASE)
 
                 if not email_id:
-                    company_mailid=''
+                    company_mailid=' '
                     print(f'It is comapny mailid : {company_mailid}')
                     return company_mailid 
 
@@ -621,7 +620,7 @@ class webscraping(APIView):
                 website=re.findall(website_pattern,filetext,re.IGNORECASE)
 
                 if not website:
-                    website=''
+                    website=None
                     print('website is not found 406')
                     return website
 
@@ -716,14 +715,13 @@ class webscraping(APIView):
 
             data = {
             "company_name":str(upcompanyfuntext()).replace('{','').replace('}','').replace('[','').replace(']',''),
-            "address":list(addresstext()),#.replace('{','').replace('}','').replace('[','').replace(']',''),
+            "address":str(addresstext()).replace('{','').replace('}','').replace('[','').replace(']',''),
             "contact_number":str(contacttext()).replace('{','').replace('}','').replace('[','').replace(']',''),
             "email": str(mailtext()).replace('{','').replace('}','').replace('[','').replace(']',''),
             "website": str(websitefuntext()).replace('{','').replace('}','').replace('[','').replace(']',''),
             }
 
             serializer=serializersclass(data=data)
-            # print(serializer)
             if serializer.is_valid():
                 serializer.save()
                 print('saved')
